@@ -1,0 +1,24 @@
+<form (ngSubmit)="submitExpense()">
+  <input
+    type="text"
+    [(ngModel)]="title"
+    name="title"
+    placeholder="Title"
+    required
+  />
+  <input
+    type="number"
+    [(ngModel)]="amount"
+    name="amount"
+    placeholder="Amount"
+    required
+  />
+  <input
+    type="text"
+    [(ngModel)]="category"
+    name="category"
+    placeholder="Category"
+    required
+  />
+  <button type="submit">Add Expense</button>
+</form>

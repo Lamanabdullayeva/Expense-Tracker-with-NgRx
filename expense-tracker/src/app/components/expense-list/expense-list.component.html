@@ -1,0 +1,6 @@
+<ul>
+  @for (expense of expenses(); track $index) {
+
+  <li>{{ expense.title }} - ${{ expense.amount }} ({{ expense.category }})</li>
+  }
+</ul>
