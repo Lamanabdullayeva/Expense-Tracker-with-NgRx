@@ -4,6 +4,7 @@ import { IExpense } from '../../models/i-expense';
 import {
   selectExpenses,
   selectExpenseState,
+  selectFilteredExpenses,
 } from '../../state/expenses.selectors';
 
 @Component({
@@ -18,7 +19,7 @@ export class ExpenseListComponent {
   expenses = signal<IExpense[]>([]);
 
   constructor() {
-    this.store.select(selectExpenses).subscribe((expenses) => {
+    this.store.select(selectFilteredExpenses).subscribe((expenses) => {
       this.expenses.set(expenses);
     });
   }
