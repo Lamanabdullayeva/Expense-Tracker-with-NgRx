@@ -1,7 +1,9 @@
+import { Category } from './category';
+
 export interface IExpense {
   id: string;
   title: string;
   amount: number;
-  category: string;
+  category: Category;
   date: string;
 }

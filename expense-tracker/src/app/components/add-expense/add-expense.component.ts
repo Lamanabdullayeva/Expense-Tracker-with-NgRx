@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IExpense } from '../../models/i-expense';
 import { addExpense } from '../../state/expenses.actions';
+import { categories, Category } from '../../models/category';
 
 @Component({
   selector: 'app-add-expense',
@@ -13,9 +14,10 @@ import { addExpense } from '../../state/expenses.actions';
 })
 export class AddExpenseComponent {
   store = inject(Store);
+  categories = categories;
   title = '';
   amount = 0;
-  category = '';
+  category: Category = 'Other';
 
   submitExpense() {
     if (!this.title || this.amount <= 0 || !this.category) return;
@@ -32,10 +34,9 @@ export class AddExpenseComponent {
     this.resetForm();
   }
 
-  
   resetForm() {
     this.title = '';
     this.amount = 0;
-    this.category = '';
+    this.category = 'Other';
   }
 }
