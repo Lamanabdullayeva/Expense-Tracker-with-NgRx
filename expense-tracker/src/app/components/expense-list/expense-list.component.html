@@ -1,6 +1,25 @@
 <ul>
   @for (expense of expenses(); track $index) {
 
-  <li>{{ expense.title }} - ${{ expense.amount }} ({{ expense.category }})</li>
+  <li>
+    @if (!expense.editing) {
+
+    <span>
+      {{ expense.title }} - ${{ expense.amount }} ({{ expense.category }})
+    </span>
+
+    @if (expense.editing) {
+    <span>
+      <input [(ngModel)]="expense.title" />
+      <input [(ngModel)]="expense.amount" type="number" />
+      <button (click)="saveEdit(expense)">Save</button>
+      <button (click)="cancelEdit(expense)">Cancel</button>
+    </span>
+    } @if (!expense.editing) {
+    <button (click)="editExpense(expense)">Edit</button>
+    }
+    <button (click)="deleteExpenseById(expense.id)">Delete</button>
+    }
+  </li>
   }
 </ul>

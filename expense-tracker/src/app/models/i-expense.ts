@@ -6,4 +6,5 @@ export interface IExpense {
   amount: number;
   category: Category;
   date: string;
+  editing?: boolean;
 }

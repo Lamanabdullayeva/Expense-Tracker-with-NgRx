@@ -1,6 +1,11 @@
 import { IExpense } from '../models/i-expense';
 import { createReducer, on } from '@ngrx/store';
-import { addExpense, setCategoryFilter } from './expenses.actions';
+import {
+  addExpense,
+  deleteExpense,
+  setCategoryFilter,
+  updateExpense,
+} from './expenses.actions';
 import { Category } from '../models/category';
 
 export interface ExpenseState {
@@ -22,5 +27,15 @@ export const expensesReducer = createReducer(
   on(setCategoryFilter, (state, { category }) => ({
     ...state,
     selectedCategory: category,
+  })),
+  on(deleteExpense, (state, { id }) => ({
+    ...state,
+    expenses: [...state.expenses.filter((expense) => expense.id !== id)],
+  })),
+  on(updateExpense, (state, { updatedExpense }) => ({
+    ...state,
+    expenses: state.expenses.map((expense) =>
+      expense.id === updatedExpense.id ? updatedExpense : expense
+    ),
   }))
 );
