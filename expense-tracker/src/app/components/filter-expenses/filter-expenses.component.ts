@@ -14,6 +14,7 @@ export class FilterExpensesComponent {
 
   categories = ['All', categories];
 
+  // update filter
   updateFilter(event: Event) {
     const selectedCategory = (event.target as HTMLSelectElement).value as
       | Category

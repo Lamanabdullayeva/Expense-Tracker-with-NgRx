@@ -18,11 +18,13 @@ export class ExpenseListComponent {
   expenses = signal<IExpense[]>([]);
 
   constructor() {
+    // subscribe to filtered expenses
     this.store.select(selectFilteredExpenses).subscribe((expenses) => {
       this.expenses.set(expenses);
     });
   }
 
+  // edit expense
   editExpense(expense: IExpense) {
     this.expenses.set(
       this.expenses().map((e) => {
@@ -31,6 +33,7 @@ export class ExpenseListComponent {
     );
   }
 
+  // cancel edit
   cancelEdit(expense: IExpense) {
     this.expenses.set(
       this.expenses().map((e) => {
@@ -39,10 +42,12 @@ export class ExpenseListComponent {
     );
   }
 
+  // save edit expense
   saveEdit(expense: IExpense) {
     this.store.dispatch(updateExpense({ updatedExpense: expense }));
   }
 
+  // delete expense by id
   deleteExpenseById(id: string) {
     this.store.dispatch(deleteExpense({ id: id }));
   }

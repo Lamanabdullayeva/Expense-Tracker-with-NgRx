@@ -20,18 +20,26 @@ const initialState: ExpenseState = {
 
 export const expensesReducer = createReducer(
   initialState,
+
+  // add expense
   on(addExpense, (state, { expense }) => ({
     ...state,
     expenses: [...state.expenses, expense],
   })),
+
+  // set category filter
   on(setCategoryFilter, (state, { category }) => ({
     ...state,
     selectedCategory: category,
   })),
+
+  // delete expense
   on(deleteExpense, (state, { id }) => ({
     ...state,
     expenses: [...state.expenses.filter((expense) => expense.id !== id)],
   })),
+
+  // update expense
   on(updateExpense, (state, { updatedExpense }) => ({
     ...state,
     expenses: state.expenses.map((expense) =>
